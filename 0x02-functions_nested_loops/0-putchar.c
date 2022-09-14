@@ -1,12 +1,11 @@
 #include <stdio.h>
-#include <main.h>
 /**
 *main - Entry point
 *Return: always 0 (successs)
 */
-int main(void)
+char main(void)
 {
-	putchar("_putchar");
+	puts("_putchar");
 
 putchar('\n');
 
