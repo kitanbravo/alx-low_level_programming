@@ -2,46 +2,74 @@
 #include <stdlib.h>
 
 /**
- * new_dog - creates a new dog structure
- * @name: Dog's name
- * @age: Dog's age
- * @owner: Dog's owner
- * Return: returns a pointer to newly created dog structure
+ * _strlen - get the length of a string
+ * @str: the target string
+ * Return: the length of str
+ */
+size_t _strlen(char *str)
+{
+	size_t length;
+
+	for (length = 0; str[length]; length++)
+		continue;
+	return (length);
+}
+
+/**
+ * _strcpy - copies one string to another
+ * @src: the string to copy
+ * @dest: the string to copy to
+ *
+ * Return: nothing
+ */
+void _strcpy(char *dest, char *src)
+{
+	size_t i;
+
+	for (i = 0; src[i]; i++)
+		dest[i] = src[i];
+	dest[i] = src[i];
+}
+
+/**
+ * new_dog - creates a new dog
+ * @name: name of the dog
+ * @age: age of the dog
+ * @owner: owner of the dog
+ *
+ * Return: a dog struct
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *new_dog;
-	char *cpyname, *cpyowner;
-	int len_name = 0, len_owner = 0, i;
+	char *n, *o;
+	size_t nl, ol;
+	dog_t *d;
 
-	if (name == NULL || owner == NULL)
-		return (NULL);
+	if (name == N || owner == N)
+		return (N);
 
-	while (name[len_name])
-		len_name++;
-	while (owner[len_owner])
-		len_owner++;
-
-	new_dog = malloc(sizeof(dog_t));
-	if (new_dog == NULL)
-		return (NULL);
-
-	cpyname = malloc(len_name + 1);
-	if (cpyname == NULL)
-		return (NULL);
-	for (i = 0; name[i]; i++)
-		cpyname[i] = name[i];
-	cpyname[i] = '\0';
-
-	cpyowner = malloc(len_owner + 1);
-	if (cpyowner == NULL)
-		return (NULL);
-	for (i = 0; owner[i]; i++)
-		cpyowner[i] = owner[i];
-	cpyowner[i] = '\0';
-
-	new_dog->name = cpyname;
-	new_dog->age = age;
-	new_dog->owner = cpyowner;
-	return (new_dog);
+	nl = _strlen(name);
+	ol = _strlen(owner);
+	n = malloc(nl + 1);
+	if (n == N)
+		return (N);
+	o = malloc(ol + 1);
+	if (o == N)
+	{
+		free(n);
+		return (N);
+	}
+	d = (dog_t *)malloc(sizeof(dog_t));
+	if (d == N)
+	{
+		free(n);
+		free(o);
+		return (N);
+	}
+	_strcpy(n, name);
+	_strcpy(o, owner);
+	d->name = n;
+	d->age = age;
+	d->owner = o;
+	return (d);
 }

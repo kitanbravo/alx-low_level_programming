@@ -1,5 +1,7 @@
-#ifndef _DOG_H_
-#define _DOG_H_
+#ifndef MAIN_H
+#define MAIN_H
+#define N (void *)0
+
 
 /**
  * struct dog - structure for a basic dog
